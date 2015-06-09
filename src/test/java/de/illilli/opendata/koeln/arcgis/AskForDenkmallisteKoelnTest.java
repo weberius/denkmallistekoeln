@@ -20,7 +20,7 @@ public class AskForDenkmallisteKoelnTest {
 	@Before
 	public void setUp() throws Exception {
 		InputStream inputStream = this.getClass().getResourceAsStream(
-				"/denkmallistekoeln.json");
+				"/denkmallistekoeln100.json");
 
 		AskForDenkmallisteKoeln askfor = new AskForDenkmallisteKoeln(
 				inputStream);
