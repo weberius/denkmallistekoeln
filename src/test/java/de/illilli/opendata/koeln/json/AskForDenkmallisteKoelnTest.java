@@ -1,4 +1,4 @@
-package de.illilli.opendata.koeln.arcgis;
+package de.illilli.opendata.koeln.json;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+import de.illilli.opendata.koeln.json.AskForDenkmallisteKoeln;
 import de.illilli.opendata.service.denkmallistekoeln.json.Denkmal;
 import de.illilli.opendata.service.denkmallistekoeln.json.DenkmallisteKoeln;
 

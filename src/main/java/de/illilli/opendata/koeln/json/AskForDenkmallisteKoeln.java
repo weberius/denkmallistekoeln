@@ -1,4 +1,4 @@
-package de.illilli.opendata.koeln.arcgis;
+package de.illilli.opendata.koeln.json;
 
 import java.io.IOException;
 import java.io.InputStream;
