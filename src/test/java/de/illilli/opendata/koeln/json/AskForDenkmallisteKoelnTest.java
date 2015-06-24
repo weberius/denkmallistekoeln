@@ -10,7 +10,6 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import de.illilli.opendata.koeln.json.AskForDenkmallisteKoeln;
 import de.illilli.opendata.service.denkmallistekoeln.json.Denkmal;
 import de.illilli.opendata.service.denkmallistekoeln.json.DenkmallisteKoeln;
 
@@ -23,7 +22,7 @@ public class AskForDenkmallisteKoelnTest {
 		InputStream inputStream = this.getClass().getResourceAsStream(
 				"/denkmallistekoeln100.json");
 
-		AskForDenkmallisteKoeln askfor = new AskForDenkmallisteKoeln(
+		AskForDenkmallisteKoeln askfor = new AskForDenkmallisteKoelnJson(
 				inputStream);
 
 		DenkmallisteKoeln denkmallisteKoeln = askfor.getDenkmallisteKoeln();

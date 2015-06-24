@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import de.illilli.opendata.koeln.json.AskForDenkmallisteKoeln;
+import de.illilli.opendata.koeln.json.AskForDenkmallisteKoelnJson;
 import de.illilli.opendata.service.denkmallistekoeln.json.Denkmal;
 
 public class DenkmallisteKoelnFacade implements Facade {
@@ -20,7 +21,7 @@ public class DenkmallisteKoelnFacade implements Facade {
 
 	public DenkmallisteKoelnFacade() {
 		try {
-			AskForDenkmallisteKoeln askFor = new AskForDenkmallisteKoeln();
+			AskForDenkmallisteKoeln askFor = new AskForDenkmallisteKoelnJson();
 			Denkmal[] denkmalArray = askFor.getDenkmallisteKoeln().result.records;
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			Gson gson = gsonBuilder.create();
