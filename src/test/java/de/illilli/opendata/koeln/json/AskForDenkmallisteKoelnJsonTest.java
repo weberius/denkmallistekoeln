@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import de.illilli.opendata.service.denkmallistekoeln.json.Denkmal;
 import de.illilli.opendata.service.denkmallistekoeln.json.DenkmallisteKoeln;
 
-public class AskForDenkmallisteKoelnTest {
+public class AskForDenkmallisteKoelnJsonTest {
 
 	private Denkmal[] denkmal;
 
