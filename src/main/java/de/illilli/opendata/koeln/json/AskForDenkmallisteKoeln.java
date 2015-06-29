@@ -1,13 +1,16 @@
 package de.illilli.opendata.koeln.json;
 
-import de.illilli.opendata.service.denkmallistekoeln.json.DenkmallisteKoeln;
+import java.util.ArrayList;
+import java.util.List;
+
+import de.illilli.opendata.service.denkmallistekoeln.json.Denkmal;
 
 public abstract class AskForDenkmallisteKoeln {
 
-	DenkmallisteKoeln denkmallisteKoeln;
+	List<Denkmal> denkmalListe = new ArrayList<Denkmal>();
 
-	public DenkmallisteKoeln getDenkmallisteKoeln() {
-		return denkmallisteKoeln;
+	public List<Denkmal> getDenkmallisteKoeln() {
+		return denkmalListe;
 	}
 
 }

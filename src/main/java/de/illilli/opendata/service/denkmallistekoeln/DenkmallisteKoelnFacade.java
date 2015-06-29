@@ -2,6 +2,7 @@ package de.illilli.opendata.service.denkmallistekoeln;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -22,10 +23,10 @@ public class DenkmallisteKoelnFacade implements Facade {
 	public DenkmallisteKoelnFacade() {
 		try {
 			AskForDenkmallisteKoeln askFor = new AskForDenkmallisteKoelnJson();
-			Denkmal[] denkmalArray = askFor.getDenkmallisteKoeln().result.records;
+			List<Denkmal> denkmalList = askFor.getDenkmallisteKoeln();
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			Gson gson = gsonBuilder.create();
-			json = new StringBuilder(gson.toJson(denkmalArray));
+			json = new StringBuilder(gson.toJson(denkmalList));
 		} catch (MalformedURLException e) {
 			logger.error(e);
 		} catch (IOException e) {

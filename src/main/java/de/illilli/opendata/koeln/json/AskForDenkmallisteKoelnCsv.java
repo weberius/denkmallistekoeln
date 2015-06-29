@@ -2,17 +2,19 @@ package de.illilli.opendata.koeln.json;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
-import de.illilli.opendata.service.denkmallistekoeln.json.DenkmallisteKoeln;
+import de.illilli.opendata.service.denkmallistekoeln.json.Denkmal;
 
+/**
+ * IT'S NOT WORKIN
+ */
 public class AskForDenkmallisteKoelnCsv extends AskForDenkmallisteKoeln {
 
 	/**
@@ -27,26 +29,25 @@ public class AskForDenkmallisteKoelnCsv extends AskForDenkmallisteKoeln {
 	private static final Logger logger = Logger
 			.getLogger(AskForDenkmallisteKoelnCsv.class);
 
-	public AskForDenkmallisteKoelnCsv() throws MalformedURLException,
-			IOException {
-
-		InputStream inputStream = new URL(URL).openStream();
-		ObjectMapper mapper = new ObjectMapper();
-		denkmallisteKoeln = mapper.readValue(inputStream,
-				DenkmallisteKoeln.class);
-		logger.debug(denkmallisteKoeln.toString());
-	}
-
 	public AskForDenkmallisteKoelnCsv(InputStream inputStream)
-			throws JsonParseException, JsonMappingException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		denkmallisteKoeln = mapper.readValue(inputStream,
-				DenkmallisteKoeln.class);
-		logger.debug(denkmallisteKoeln.toString());
-	}
+			throws IOException {
 
-	public DenkmallisteKoeln getDenkmallisteKoeln() {
-		return denkmallisteKoeln;
+		CsvMapper mapper = new CsvMapper();
+		CsvSchema schema = mapper.schemaFor(Denkmal.class);
+		schema.withColumnSeparator(';');
+
+		MappingIterator<Denkmal> it = mapper.reader(Denkmal.class).with(schema)
+				.readValues(inputStream);
+
+		while (it.hasNextValue()) {
+			try {
+				Denkmal denkmal = it.nextValue();
+				denkmalListe.add(denkmal);
+			} catch (JsonParseException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 }

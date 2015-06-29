@@ -2,6 +2,7 @@ package de.illilli.opendata.koeln.json;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,11 +12,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import de.illilli.opendata.service.denkmallistekoeln.json.Denkmal;
-import de.illilli.opendata.service.denkmallistekoeln.json.DenkmallisteKoeln;
 
 public class AskForDenkmallisteKoelnJsonTest {
 
-	private Denkmal[] denkmal;
+	private List<Denkmal> denkmal;
 
 	@Before
 	public void setUp() throws Exception {
@@ -25,8 +25,7 @@ public class AskForDenkmallisteKoelnJsonTest {
 		AskForDenkmallisteKoeln askfor = new AskForDenkmallisteKoelnJson(
 				inputStream);
 
-		DenkmallisteKoeln denkmallisteKoeln = askfor.getDenkmallisteKoeln();
-		denkmal = denkmallisteKoeln.result.records;
+		denkmal = askfor.getDenkmallisteKoeln();
 	}
 
 	@Test
@@ -34,7 +33,7 @@ public class AskForDenkmallisteKoelnJsonTest {
 			JsonMappingException, IOException {
 
 		int expected = 100;
-		int actual = denkmal.length;
+		int actual = denkmal.size();
 		Assert.assertEquals(expected, actual);
 
 	}
@@ -58,7 +57,7 @@ public class AskForDenkmallisteKoelnJsonTest {
 	public void testGetDenkmal() throws JsonParseException,
 			JsonMappingException, IOException {
 
-		Denkmal allee = denkmal[0];
+		Denkmal allee = denkmal.get(0);
 		Assert.assertEquals(1, allee.denkmalnummer);
 		Assert.assertEquals(50679, allee.plz);
 		Assert.assertEquals("Deutz", allee.ort);

@@ -1,6 +1,7 @@
 package de.illilli.opendata.service.denkmallistekoeln.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * <pre>
@@ -22,6 +23,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * </pre>
  *
  */
+@JsonPropertyOrder({ "Denkmalnummer", "Untergruppe 1", "Untergruppe 2",
+		"Strasse", "Nummer", "Bezirk", "PLZ", "Ort", "unter Schutz",
+		"Baujahr Zusatz", "Baujahr", "Kurzbezeichnung",
+		"feeds_flatstore_entry_id", "timestamp", "feeds_entity_id" })
 public class Denkmal {
 
 	@JsonProperty("Denkmalnummer")

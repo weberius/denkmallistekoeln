@@ -1,16 +1,16 @@
 package de.illilli.opendata.koeln.json;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import de.illilli.opendata.service.denkmallistekoeln.json.Denkmal;
-import de.illilli.opendata.service.denkmallistekoeln.json.DenkmallisteKoeln;
 
 public class AskForDenkmallisteKoelnCsvTest {
 
-	private Denkmal[] denkmal;
+	private List<Denkmal> denkmal;
 
 	@Before
 	public void setUp() throws Exception {
@@ -20,8 +20,7 @@ public class AskForDenkmallisteKoelnCsvTest {
 		AskForDenkmallisteKoeln askfor = new AskForDenkmallisteKoelnCsv(
 				inputStream);
 
-		DenkmallisteKoeln denkmallisteKoeln = askfor.getDenkmallisteKoeln();
-		denkmal = denkmallisteKoeln.result.records;
+		denkmal = askfor.getDenkmallisteKoeln();
 	}
 
 	@Test
