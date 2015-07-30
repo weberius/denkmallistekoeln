@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Liste aller Denkm&auml;ler in K&ouml;ln</title>
+<script src="angularjs/1.3.14/angular.min.js"></script>
+<style>
+h1 {
+	font: 18px/24px Arial, Helvetica, sans-serif;
+}
+
+table, th, td {
+    font: 10px/14px Arial, Helvetica, sans-serif;
+	border: 1px solid white;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+table tr:nth-child(odd) {
+	background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+	background-color: #ffffff;
+}
+</style>
+</head>
+<body>
+	<h1>Liste aller Denkm&auml;ler in K&ouml;ln</h1>
+	<div ng-app="denkmalApp" ng-controller="denkmalCtrl">
+
+		<table>
+			<tr>
+				<th>Denkmal- nummer</th>
+				<th>PLZ</th>
+				<th>Ort</th>
+				<th>Strasse</th>
+				<th>Unter Schutz</th>
+				<th>Baujahr</th>
+				<th>Baujahr Zusatz</th>
+				<th>Kurzbezeichnung</th>
+			</tr>
+			<tr ng-repeat="denkmal in denkmallist">
+				<td>{{ denkmal.Denkmalnummer }}</td>
+				<td>{{ denkmal.PLZ }}</td>
+				<td>{{ denkmal.Ort }}</td>
+				<td>{{ denkmal.Strasse }} {{ denkmal.Nummer }}</td>
+				<td>{{ denkmal.unterSchutz }}</td>
+				<td>{{ denkmal.baujahr }}</td>
+				<td>{{ denkmal.baujahrZusatz }}</td>
+				<td>{{ denkmal.kurzbezeichnung }}</td>
+			</tr>
+		</table>
+
+	</div>
+
+	<script>
+		var app = angular.module('denkmalApp', []);
+		app.controller('denkmalCtrl', function($scope, $http) {
+			$http.get("/denkmallistekoeln/service?res")
+				.success(
+					function(response) {
+						$scope.denkmallist = response;
+					});
+		});
+	</script>
+</body>
+</html>
