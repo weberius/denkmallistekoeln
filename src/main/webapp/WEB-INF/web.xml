@@ -3,7 +3,7 @@
   <display-name>denkmallistekoeln</display-name>
   <servlet-mapping>
     <servlet-name>Jersey REST Service</servlet-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/service/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Jersey REST Service</servlet-name>

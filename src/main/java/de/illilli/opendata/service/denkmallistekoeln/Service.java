@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-@Path("/service")
+@Path("/")
 public class Service {
 
 	private final static Logger logger = Logger.getLogger(Service.class);
@@ -35,6 +35,9 @@ public class Service {
 	 * <p>
 	 * http://localhost:8080/denkmallistekoeln/service
 	 * </p>
+	 * <p>
+	 * http://localhost:8080/denkmallistekoeln/service?res
+	 * </p>
 	 * 
 	 * @return
 	 * @throws JsonParseException
@@ -47,10 +50,19 @@ public class Service {
 	@Path("/")
 	public String getKoeln() throws JsonParseException, JsonMappingException,
 			IOException, URISyntaxException {
+		String json = "";
+		boolean fromResource = request.getParameter("res") != null ? true
+				: false;
 		// setze das Character-Encoding fuer die Antwort auf UTF-8
 		response.setCharacterEncoding("UTF-8");
 		logger.debug("requesting denkmalliste koeln");
-		return new DenkmallisteKoelnFacade().getJson();
+		if (fromResource) {
+			json = new DenkmallisteKoelnByResourceFacade().getJson();
+		} else {
+			json = new DenkmallisteKoelnFacade().getJson();
+		}
+
+		return json;
 	}
 
 }
