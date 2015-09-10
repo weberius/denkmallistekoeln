@@ -4,10 +4,12 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.illilli.opendata.service.denkmallistekoeln.json.Denkmal;
 
+@Ignore
 public class AskForDenkmallisteKoelnCsvTest {
 
 	private List<Denkmal> denkmal;
